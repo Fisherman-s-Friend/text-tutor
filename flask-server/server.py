@@ -8,21 +8,23 @@ from flask_sqlalchemy import SQLAlchemy
 from DB import db, Users, Requests
 import sys
 
+
+# --------------------------------------------------------------------------#
+# TODO: CHANGE THE PASSWORD TO THE PASSWORD YOU SET FOR THE POSTGRES DATABASE
+# TODO: CHANGE THE DATABASE NAME TO THE NAME OF THE DATABASE YOU CREATED
+DB_name = "Bachelorarbeit"
+pw = "GilbertGress"
+# --------------------------------------------------------------------------#
+
+
 app = Flask(__name__)
 CORS(app, origins="http://localhost:3000")
 
 # Configure SQLAlchemy
 
-if len(sys.argv) != 3:
-    print("Usage: server.py <db_password> <db_name>")
-    sys.exit(1)
-
-db_password = sys.argv[1]
-db_name = sys.argv[2]
-
 
 app.config["SQLALCHEMY_DATABASE_URI"] = (
-    f"postgresql://postgres:{db_password}@localhost/{db_name}"
+    f"postgresql://postgres:{pw}@localhost/{DB_name}"
 )
 
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = (
