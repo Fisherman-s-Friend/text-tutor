@@ -6,7 +6,7 @@ import platform
 
 def activate_venv():
     if platform.system() == "Windows":
-        return os.path.join("flask-server", "venv", "Scripts", "activate.bat")
+        return os.path.join("flask-server", "venv", "Scripts", "activate")
     else:
         return os.path.join("flask-server", "venv", "bin", "activate")
 
