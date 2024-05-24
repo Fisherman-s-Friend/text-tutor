@@ -44,15 +44,15 @@ def create_and_activate_venv():
         return f"source {activate_script} &&"
 
 
-def start_flask_server():
+def start_flask_server(db_password, db_name):
     activate_script = activate_venv()
     server_script = os.path.join("flask-server", "server.py")
 
     if platform.system() == "Windows":
-        subprocess.run(f"{activate_script} && python {server_script}", shell=True)
+        subprocess.run(f"{activate_script} && python {server_script} {db_password} {db_name}", shell=True)
     else:
         subprocess.run(
-            f"source {activate_script} && python {server_script}",
+            f"source {activate_script} && python {server_script} {db_password} {db_name}",
             shell=True,
             executable="/bin/bash",
         )
@@ -65,15 +65,27 @@ def start_react_client():
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
-        if sys.argv[1] == "install_flask_dependencies":
+        command = sys.argv[1]
+        if command == "install_flask_dependencies":
             install_flask_dependencies()
-        elif sys.argv[1] == "install_react_dependencies":
+        elif command == "install_react_dependencies":
             install_react_dependencies()
-        elif sys.argv[1] == "start_flask_server":
-            start_flask_server()
-        elif sys.argv[1] == "start_react_client":
+        elif command == "start_flask_server":
+            if len(sys.argv) != 4:
+                print("Usage: main.py start_flask_server <db_password> <db_name>")
+                sys.exit(1)
+            start_flask_server(sys.argv[2], sys.argv[3])
+        elif command == "start_react_client":
             start_react_client()
     else:
+        # Check if the required arguments for the DB password and name are provided
+        if len(sys.argv) != 3:
+            print("Usage: main.py <db_password> <db_name>")
+            sys.exit(1)
+
+        db_password = sys.argv[1]
+        db_name = sys.argv[2]
+
         # Create and activate virtual environment for Flask server
         venv_activation_cmd = create_and_activate_venv()
 
@@ -83,7 +95,7 @@ if __name__ == "__main__":
 
         # Start the Flask server in a new process
         flask_process = subprocess.Popen(
-            [sys.executable, __file__, "start_flask_server"]
+            [sys.executable, __file__, "start_flask_server", db_password, db_name]
         )
 
         # Start the React client in a new process

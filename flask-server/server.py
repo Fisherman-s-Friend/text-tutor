@@ -6,15 +6,23 @@ from LLM_utils import rephrase
 from mapping_dicts import iso_dict, features_dict
 from flask_sqlalchemy import SQLAlchemy
 from DB import db, Users, Requests
+import sys
 
 app = Flask(__name__)
 CORS(app, origins="http://localhost:3000")
 
 # Configure SQLAlchemy
 
-app.config["SQLALCHEMY_DATABASE_URI"] = (
-    "postgresql://postgres:GilbertGress@localhost/Bachelorarbeit"
-)
+if len(sys.argv) != 3:
+    print("Usage: server.py <db_password> <db_name>")
+    sys.exit(1)
+
+db_password = sys.argv[1]
+db_name = sys.argv[2]
+
+
+app.config["SQLALCHEMY_DATABASE_URI"] = f"postgresql://postgres:{db_password}@localhost/{db_name}"
+
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = (
     False  # Disable modification tracking to suppress a warning
 )
