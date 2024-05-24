@@ -1,0 +1,64 @@
+/* Container */
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* Form */
+  form {
+    margin-bottom: 20px;
+  }
+  
+  /* Input fields */
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  /* Sign In button */
+  button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #45a049;
+  }
+  
+  /* Error message */
+  .error-msg {
+    color: red;
+    margin-top: 5px;
+  }
+  
+  /* Sign Up button */
+  .sign-up-btn {
+    background-color: #008CBA;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .sign-up-btn:hover {
+    background-color: #005f75;
+  }
+  
+  /* Link */
+  .link {
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+  }
+  

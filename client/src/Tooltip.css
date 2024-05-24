@@ -1,0 +1,25 @@
+.token-span {
+    margin-right: 4px; /* Adjust the value as needed */
+  }
+
+.tooltip-attribute {
+color: black
+}
+
+.tooltip-attribute:nth-child(1) { background-color: #bae1ff; }
+.tooltip-attribute:nth-child(2) { background-color: #baffc9; }
+.tooltip-attribute:nth-child(3) { background-color: #ffffba; }
+.tooltip-attribute:nth-child(4) { background-color: #ffdfba; }
+.tooltip-attribute:nth-child(5) { background-color: #f2cdf6; }
+.tooltip-attribute:nth-child(6) { background-color: #d3a2dc; }
+  
+.tooltip-content {
+    min-width: 200px; /* Minimum width, adjust as needed */
+    max-width: 600px; /* Maximum width, adjust as needed */
+    width: auto; /* Adjusts width based on content, up to max-width */
+    white-space: nowrap; /* Prevents wrapping to ensure single-line display */
+    overflow: hidden; /* Hide overflow. Consider 'auto' to add scrollbars if needed */
+    text-overflow: ellipsis; /* Add ellipsis if text overflows (when 'overflow: hidden') */
+    padding: px;
+    box-sizing: border-box;
+  }

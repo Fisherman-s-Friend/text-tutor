@@ -1,0 +1,239 @@
+.translator-container {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+}
+
+.input-textarea {
+  width: 96%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: all 0.3s ease; /* Smooth transition for size changes */
+}
+
+.translator-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.language-select {
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.translate-button {
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  max-width: 200px;
+}
+
+.loading-box {
+  display: inline-block;
+  padding: 10px;
+  background-color: #696767; /* Light grey background */
+  color: rgb(255, 253, 253);
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  animation: fadeInOut 1s infinite; /* Apply the animation */
+  margin-bottom: 5px; /* Reduce bottom margin */
+}
+
+@keyframes fadeInOut {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+.translated-text-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 16px;
+  flex-direction: column; /*stack the columns horizontally*/
+  background-color: #f0f0f0; /* Light gray background color */
+  padding: 10px; /* Add padding to create some space around the text */
+  border-radius: 5px; /* Add rounded corners for a nicer appearance */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
+  max-width: 100%; /* Ensure the box doesn't exceed the width of its parent */
+}
+
+.selected-text-label {
+  background-color: #f0f0f0; /* Grey background color */
+  padding: 5px; /* Add padding to create space */
+  border-radius: 5px; /* Add rounded corners */
+  font-weight: bold; /* Make the text bold */
+}
+
+
+.translated-box {
+  flex: 1; /* Each box takes up equal width */
+  margin: 5px; /* Add spacing between boxes */
+  padding: 10px; /* Add padding inside each box */
+  border-radius: 5px; /* Add rounded corners for a nicer appearance */
+}
+
+.translated-box:nth-child(1) {
+  background-color: #bae1ff; /* Pastel blue */
+}
+
+.translated-box:nth-child(2) {
+  background-color: #baffc9; /* Pastel green */
+}
+
+.translated-box:nth-child(3) {
+  background-color: #ffffba; /* Pastel yellow */
+}
+
+.translated-box:nth-child(4) {
+  background-color: #ffdfba; /* Pastel orange */
+}
+
+.translated-box:nth-child(6) {
+  background-color: #d3a2dc; /* Pastel violett */
+}
+
+.translated-box:nth-child(7) {
+  background-color: #f2cdf6; /* Pastel violett */
+}
+
+
+.translated-text-label,
+.definitions-label,
+.synonyms-label,
+.POS-label,
+.DEP-label,
+.Rephrase-label, 
+.Morphology-label {
+  font-weight: bold;
+}
+
+.translated-text,
+.definitions,
+.synonyms,
+.POS,
+.DEP {
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+.context-menu {
+  position: fixed;
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 5px;
+  z-index: 1000;
+}
+
+.token-span {
+  white-space: pre-wrap; /* Ensures whitespace is preserved */
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.token-span:hover {
+  background-color: rgb(0, 0, 0); /* Light grey background on hover */
+  color: #ffffff;
+}
+
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip-content {
+  visibility: hidden;
+  max-width: 300px; /* Adjust based on your preference */
+  width: auto;
+  padding: 10px; /* Provides some padding inside the tooltip */
+  box-sizing: border-box; /* Ensures padding does not affect the final width */
+  word-wrap: break-word; /* Ensures long words do not extend past the max width */
+  white-space: pre-wrap; /* Maintains spacing and new lines but allows wrapping */
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -60px; /* Half of width to center it */
+}
+
+.tooltip-container:hover .tooltip-content {
+  visibility: visible;
+}
+
+.tokensContainer {
+  width: 96%;
+  padding: 10px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  background-color: #f0f0f0;
+  border-radius: 4px;
+  border: 2px solid black;
+  font-size: 16px;
+  transition: all 0.3s ease; /* Smooth transition for size changes */
+}
+
+
+
+
+
+.Box{
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 16px;
+  flex-direction: column; /*stack the columns horizontally*/
+  background-color: #f0f0f0; /* Light gray background color */
+  padding: 10px; /* Add padding to create some space around the text */
+  border-radius: 5px; /* Add rounded corners for a nicer appearance */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
+  max-width: 100%; /* Ensure the box doesn't exceed the width of its parent */
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.history-button:hover {
+  background-color: #f0f0f0;
+  background-color: #292829;
+  color: #ffffff;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.translate-button:hover {
+  background-color: #f0f0f0;
+  background-color: #f2bef1;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.history-button {
+  padding: 16px;
+  font-size: 16px;
+  padding: 0%;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.history-controls {
+  display: flex;
+  align-items: center; /* Align items vertically in the center */
+}
+
+
+.custom-width {
+  width: 200%;
+  background-color: #bae1ff;
+}
+
