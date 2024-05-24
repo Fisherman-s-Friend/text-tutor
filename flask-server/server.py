@@ -21,7 +21,9 @@ db_password = sys.argv[1]
 db_name = sys.argv[2]
 
 
-app.config["SQLALCHEMY_DATABASE_URI"] = f"postgresql://postgres:{db_password}@localhost/{db_name}"
+app.config["SQLALCHEMY_DATABASE_URI"] = (
+    f"postgresql://postgres:{db_password}@localhost/{db_name}"
+)
 
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = (
     False  # Disable modification tracking to suppress a warning
@@ -282,7 +284,6 @@ def process():
                     print(return_val)
                     return return_val
                 return "-"
-
 
             try:
                 definitions = ", ".join(
