@@ -53,4 +53,5 @@ class Requests(db.Model):
         db.session.commit()
 
     def get_request_data_extra_as_json(self):
+        self.request_data_extra = str(self.request_data_extra).replace("'", '"')
         return json.loads(self.request_data_extra)  # Deserialize string to JSON object
