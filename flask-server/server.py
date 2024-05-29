@@ -31,10 +31,12 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = (
     False  # Disable modification tracking to suppress a warning
 )
 
-
 db.init_app(app)
 with app.app_context():
     db.create_all()
+
+
+RQ_data = []
 
 
 @app.route("/requests/<username>", methods=["GET"])
@@ -81,6 +83,8 @@ from flask import jsonify
 
 @app.route("/request/<selected_value>", methods=["GET"])
 def get_request(selected_value):
+    global RQ_data
+
     # Query the database to get the language and extra data for the selected request
     request_info = Requests.query.filter_by(request_data=selected_value).first()
 
@@ -88,6 +92,7 @@ def get_request(selected_value):
         # Get the language and extra data
         language = request_info.request_language
         extra_data = request_info.get_request_data_extra_as_json()
+        RQ_data = extra_data
 
         return jsonify({"language": language, "extra_data": extra_data})
     else:
@@ -210,12 +215,26 @@ def lang_data():
         return jsonify({"message": "Text submitted."})
 
     if action in ["define", "synonyms"]:
-        for s in analysed_text.sentences:
-            for word in s.words:
-                if word.start_char == selection_start:
-                    lemma = word.lemma
+        if type(analysed_text) == list:
+            print("REQUEST DATA", RQ_data)
+            analysed_text = RQ_data
+            print("SELECTED TEXT", input_text, len(input_text))
+            for s in RQ_data:
+                print(s), len(s["text"])
+                if s["text"] == input_text.strip():
+                    print("FOUND")
+                    lemma = s["lemma"]
+                    POS = s["POS"]
                     print(lemma)
                     break
+
+        else:
+            for s in analysed_text.sentences:
+                for word in s.words:
+                    if word.start_char == selection_start:
+                        lemma = word.lemma
+                        print(lemma)
+                        break
 
     if action == "define":
         definitions = ", ".join(
