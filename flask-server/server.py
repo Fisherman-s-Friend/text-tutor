@@ -217,6 +217,7 @@ def lang_data():
     if action in ["define", "synonyms"]:
         if type(analysed_text) == list:
             print("REQUEST DATA", RQ_data)
+            temp = analysed_text
             analysed_text = RQ_data
             print("SELECTED TEXT", input_text, len(input_text))
             for s in RQ_data:
@@ -256,6 +257,7 @@ def lang_data():
         rephrased_text = rephrase(input_text)
         return jsonify({"Rephrase": rephrased_text})
 
+    analysed_text = temp
     return
 
 
