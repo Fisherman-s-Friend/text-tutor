@@ -14,8 +14,8 @@ This application provides a simple and intuitive user interface that helps under
 
 ## Usage Instructions
 
-Once the application is open in your browser, you can log in on the "Sign In" page or input a text in the "Home" page. If you are signed in, your past requests will be saved in the database and can be retrieved quickly. Once you have copied or written the text into the input box, you can click the "Submit" button. This will process the text, which might take a couple of dozens of seconds.
+Once the application is open in your browser, you can log in on the "Sign In" page or input a text on the "Home" page. If you are signed in, your past requests will be saved in the database and can be retrieved quickly. Once you have copied or written the text into the input box, you can click the "Submit" button. This will process the text, which might take a couple of dozens of seconds.
 
-A new box will then with the processed text. Upon hovering over individual words, additional information such as Part-of-Speech tags and grammatical function will be displayed.
+A new box will then appear with the processed text. Upon hovering over individual words, additional information such as Part-of-Speech tags and grammatical function will be displayed.
 
-For additional information - such as translation or rephrasing of (parts of) sentences, as well as getting definitions and synonyms for individual words - the text on which the action should be performed needs to be selected in the _input window_. Upon doing that, a context menu will appear (in case it does not, it can be prompted to open by right-clicking), where the desired action can be performed by hovering over it. In order to close the context menu, hovering over "Hide" is needed.
+For additional information - such as translation or rephrasing of (parts of) sentences, as well as getting definitions and synonyms for individual words - the text on which the action should be performed needs to be selected in the **input window**. Upon doing that, a context menu will appear (in case it does not, it can be prompted to open by right-clicking), where the desired action can be performed by hovering over it. In order to close the context menu, hovering over "Hide" is needed.
