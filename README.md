@@ -11,7 +11,7 @@ This application provides a simple and intuitive user interface that helps under
   - Step 2a: Keep the master password you are prompted to set in mind.
   - Step 2b: Create an empty database and keep the name in mind.
 - Step 3: Open the cloned repository by double-clicking on it, then open the folder "flask-server". Once in there, open the file "server.py" and write the database master password and the database name into it (rows 15 & 16).
-- Step 4: Go back to the command prompt and navigate to the directory with the cloned repository. Start the application by running "main.py". This will automatically install all the dependencies, establish a connection to both the database and OLLaMa and open up the application in your browser.
+- Step 4: Go back to the command prompt and navigate to the directory with the cloned repository. Start the application by running "python main.py" on Windows or "python3 main.py" on MacOS. This will automatically install all the dependencies, establish a connection to both the database and OLLaMa and open up the application in your browser.
 
 ## Usage Instructions
 
