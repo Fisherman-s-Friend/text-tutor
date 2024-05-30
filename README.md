@@ -4,13 +4,14 @@ This application provides a simple and intuitive user interface that helps under
 
 ## Installation Instructions
 
+- Step 0: Create a folder on your machine. Navigate into this folder using the command prompt, then clone this repository by running "git clone https://github.com/Fisherman-s-Friend/text-tutor.git"
 - Step 1: Download and install OLLaMa (https://ollama.com/download).
   - Step 1a: Open the command prompt and type "ollama run mistral" or "ollama pull mistal" in order to pull the mistral model to your machine.
 - Step 2: Download and install PostgreSQL (https://www.postgresql.org/download/).
   - Step 2a: Keep the master password you are prompted to set in mind.
   - Step 2b: Create an empty database and keep the name in mind.
 - Step 3: Write these two strings - the master password and the database name - into the "server.py" file (rows 15 & 16), in the folder "flask-server".
-- Step 4: Start the application by running "main.py". This will automatically install all the dependencies, establish a connection to both the database and OLLaMa and open up the application in your browser.
+- Step 4: Go back to the command prompt and navigate to the cloned directory. Start the application by running "main.py". This will automatically install all the dependencies, establish a connection to both the database and OLLaMa and open up the application in your browser.
 
 ## Usage Instructions
 
