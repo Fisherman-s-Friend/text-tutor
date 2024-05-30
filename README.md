@@ -5,10 +5,10 @@ This application provides a simple and intuitive user interface that helps under
 ## Installation Instructions
 
 - Step 0: Create a folder on your machine. Navigate into this folder using the command prompt, then clone this repository by running "git clone https://github.com/Fisherman-s-Friend/text-tutor.git"
-- Step 1: Download and install OLLaMa (https://ollama.com/download).
-  - Step 1a: Open the command prompt and type "ollama run mistral" or "ollama pull mistal" in order to pull the mistral model to your machine.
-- Step 2: Download and install PostgreSQL (https://www.postgresql.org/download/).
-  - Step 2a: Keep the master password you are prompted to set in mind.
+- Step 1: Download and install OLLaMa (https://ollama.com/download). You can install it by opening the downloaded installer and following the instructions there.
+  - Step 1a: Open the command prompt and type "ollama run mistral" to pull the mistral model to your machine and run it or "ollama pull mistral" to just pull it. Both options work.
+- Step 2: Download and install PostgreSQL (https://www.postgresql.org/download/). You can install it by opening the downloaded installer and following the instructions there.
+  - Step 2a: You are prompted to set a master password. Remember that password.
   - Step 2b: Create an empty database and keep the name in mind.
 - Step 3: Open the cloned repository by double-clicking on it, then open the folder "flask-server". Once in there, open the file "server.py" and write the database master password and the database name into it (rows 15 & 16).
 - Step 4: Go back to the command prompt and navigate to the directory with the cloned repository. Start the application by running "python main.py" on Windows or "python3 main.py" on MacOS. This will automatically install all the dependencies, establish a connection to both the database and OLLaMa and open up the application in your browser.
@@ -19,4 +19,6 @@ Once the application is open in your browser, you can log in on the "Sign In" pa
 
 A new box will then appear with the processed text. Upon hovering over individual words, additional information such as Part-of-Speech tags and grammatical function will be displayed.
 
-For additional information - such as translation or rephrasing of (parts of) sentences, as well as getting definitions and synonyms for individual words - the text on which the action should be performed needs to be selected in the **input window**. Upon doing that, a context menu will appear (in case it does not, it can be prompted to open by right-clicking), where the desired action can be performed by hovering over it. In order to close the context menu, hover over "Hide".
+For additional information - such as translation or rephrasing of (parts of) sentences, as well as getting definitions and synonyms for individual words - the text on which the action should be performed needs to be selected in the **input window**. Upon doing that, a context menu will appear (in case it does not, you can open it by right-clicking), where the desired action can be performed by hovering over it. In order to close the context menu, hover over "Hide".
+
+The results of context-menu actions will appear in the corresponding boxes further below.
