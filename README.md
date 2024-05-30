@@ -10,8 +10,8 @@ This application provides a simple and intuitive user interface that helps under
 - Step 2: Download and install PostgreSQL (https://www.postgresql.org/download/).
   - Step 2a: Keep the master password you are prompted to set in mind.
   - Step 2b: Create an empty database and keep the name in mind.
-- Step 3: Write these two strings - the master password and the database name - into the "server.py" file (rows 15 & 16), in the folder "flask-server".
-- Step 4: Go back to the command prompt and navigate to the cloned directory. Start the application by running "main.py". This will automatically install all the dependencies, establish a connection to both the database and OLLaMa and open up the application in your browser.
+- Step 3: Open the cloned repository by double-clicking on it, then open the folder "flask-server". Once in there, open the file "server.py" and write the database master password and the database name into it (rows 15 & 16).
+- Step 4: Go back to the command prompt and navigate to the directory with the cloned repository. Start the application by running "main.py". This will automatically install all the dependencies, establish a connection to both the database and OLLaMa and open up the application in your browser.
 
 ## Usage Instructions
 
@@ -19,4 +19,4 @@ Once the application is open in your browser, you can log in on the "Sign In" pa
 
 A new box will then appear with the processed text. Upon hovering over individual words, additional information such as Part-of-Speech tags and grammatical function will be displayed.
 
-For additional information - such as translation or rephrasing of (parts of) sentences, as well as getting definitions and synonyms for individual words - the text on which the action should be performed needs to be selected in the **input window**. Upon doing that, a context menu will appear (in case it does not, it can be prompted to open by right-clicking), where the desired action can be performed by hovering over it. In order to close the context menu, hovering over "Hide" is needed.
+For additional information - such as translation or rephrasing of (parts of) sentences, as well as getting definitions and synonyms for individual words - the text on which the action should be performed needs to be selected in the **input window**. Upon doing that, a context menu will appear (in case it does not, it can be prompted to open by right-clicking), where the desired action can be performed by hovering over it. In order to close the context menu, hover over "Hide".
