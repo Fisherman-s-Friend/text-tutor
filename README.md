@@ -4,9 +4,9 @@ This application provides a simple and intuitive user interface that helps under
 
 ## Installation Instructions
 
-- Step 1: Install OLLaMa
+- Step 1: Download and install OLLaMa (https://ollama.com/download).
   - Step 1a: Open the command prompt and type "ollama run mistral" or "ollama pull mistal" in order to pull the mistral model to your machine.
-- Step 2: Install PostgreSQL.
+- Step 2: Download and install PostgreSQL (https://www.postgresql.org/download/).
   - Step 2a: Keep the master password you are prompted to set in mind.
   - Step 2b: Create an empty database and keep the name in mind.
 - Step 3: Write these two strings - the master password and the database name - into the "server.py" file (rows 15 & 16), in the folder "flask-server".
