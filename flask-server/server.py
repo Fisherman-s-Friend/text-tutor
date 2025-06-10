@@ -12,8 +12,8 @@ import sys
 # --------------------------------------------------------------------------#
 # TODO: CHANGE THE PASSWORD TO THE PASSWORD YOU SET FOR THE POSTGRES DATABASE
 # TODO: CHANGE THE DATABASE NAME TO THE NAME OF THE DATABASE YOU CREATED
-DB_name = "Bachelorarbeit"
-pw = "GilbertGress"
+DB_name = ""
+pw = ""
 # --------------------------------------------------------------------------#
 
 
