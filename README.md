@@ -4,7 +4,7 @@ This application provides a simple and intuitive user interface that helps under
 
 ## Installation Instructions
 
-- Step 0: Create a folder on your machine. Navigate into this folder using the command prompt, then clone this repository by running "git clone https://github.com/Fisherman-s-Friend/text-tutor.git"
+- Step 0: Create a folder on your machine. Navigate into that folder using the command prompt, then clone this repository by running "git clone https://github.com/Fisherman-s-Friend/text-tutor.git"
 - Step 1: Download and install OLLaMa (https://ollama.com/download). You can install it by opening the downloaded installer and following the instructions there.
   - Step 1a: Open the command prompt and type "ollama run mistral" to pull the mistral model to your machine and run it or "ollama pull mistral" to just pull it. Both options work.
 - Step 2: Download and install PostgreSQL (https://www.postgresql.org/download/). You can install it by opening the downloaded installer and following the instructions there.
