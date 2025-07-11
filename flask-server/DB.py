@@ -7,7 +7,7 @@ db = SQLAlchemy()
 
 class Users(db.Model):
     username = db.Column(db.String(80), primary_key=True, nullable=False)
-    email = db.Column(db.String(120), unique=True, nullable=False)
+
 
     def __repr__(self):
         return "<User %r>" % self.username
@@ -22,7 +22,6 @@ class Users(db.Model):
 
     def update(self, new_data):
         self.username = new_data.username
-        self.email = new_data.email
         db.session.commit()
 
 

@@ -9,6 +9,8 @@ import googleTransLanguages from './googleTrans_languages';
 const TranslatorApp = () => {
 
     // (1) Define variables and states ------------------>
+    const [selectedModel, setSelectedModel] = useState("mistral");
+    const ollamaModels = ["mistral", "llama3.2:latest", "gemma:2b", "qwen3:1.7b", "codellama", "llama2"];
     const [inputText, setInputText] = useState('');
     const [translatedText, setTranslatedText] = useState('');
     const [definitions, setDefinitions] = useState('');
@@ -33,23 +35,32 @@ const TranslatorApp = () => {
     // -------------------------------------------------||
 
     const fetchUserRequests = () => {
-      setLoading(true);
-      fetch(`http://localhost:5000/requests/${loggedInUsername}`, {
-          method: 'GET',
-          headers: {
-              'Content-Type': 'application/json',
-          },
-      })
-      .then(response => response.json())
-      .then(data => {
-          setPastRequests(data.requests);
-      })
-      .catch(error => {
-          console.error('Error:', error);
-      })
-      .finally(() => {
-          setLoading(false);
-      });
+        setLoading(true);
+
+        fetch(`http://localhost:5000/requests/${loggedInUsername}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.requests) {
+                setPastRequests(data.requests);
+            } else if (data.message === "No requests found for this user") {
+                setPastRequests([]); // Clear existing requests
+                // Optionally show a message in the UI
+                alert("No past requests found for user '" + loggedInUsername + "'.");
+            } else if (data.error) {
+                console.error("Server error:", data.error);
+            }
+        })
+        .catch(error => {
+            console.error("Error fetching requests:", error);
+        })
+        .finally(() => {
+            setLoading(false);
+        });
     };
   
   
@@ -67,7 +78,7 @@ const TranslatorApp = () => {
         setRephrase(''); // Add this line
       }, [selectedText]);
     
-      const handleActions = (text, action) => {
+      const handleActions = (text, action, model = "mistral") => {
         setLoading(true);
         const selectedTextChanged = text !== selectedText;
         fetch('http://localhost:5000/api', {
@@ -75,7 +86,7 @@ const TranslatorApp = () => {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ text, action, language: selectedLanguage, inputLanguage, selectionStart, selectionEnd}),
+          body: JSON.stringify({ text, action, language: selectedLanguage, inputLanguage, selectionStart, selectionEnd, model: selectedModel}),
         })
           .then(response => response.json())
           .then(data => {
@@ -245,7 +256,19 @@ const TranslatorApp = () => {
               languages={googleTransLanguages}
               className="custom-width"
             />
-            <button className="translate-button" onClick={() => {handleSubmit(inputText); handleActions(inputText, "submit")}}>
+            <select
+              value={selectedModel}
+              onChange={(e) => setSelectedModel(e.target.value)}
+              className="model-select"
+            >
+              {ollamaModels.map((model) => (
+                <option key={model} value={model}>
+                  {model}
+                </option>
+              ))}
+            </select>
+
+            <button className="translate-button" onClick={() => {handleSubmit(inputText); handleActions(inputText, "submit", selectedModel)}}>
               Submit
             </button>
           </div>

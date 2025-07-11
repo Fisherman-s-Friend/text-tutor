@@ -7,14 +7,9 @@ from mapping_dicts import iso_dict, features_dict
 from flask_sqlalchemy import SQLAlchemy
 from DB import db, Users, Requests
 import sys
+import os
 
-
-# --------------------------------------------------------------------------#
-# TODO: CHANGE THE PASSWORD TO THE PASSWORD YOU SET FOR THE POSTGRES DATABASE
-# TODO: CHANGE THE DATABASE NAME TO THE NAME OF THE DATABASE YOU CREATED
-DB_name = ""
-pw = ""
-# --------------------------------------------------------------------------#
+basedir = os.path.abspath(os.path.dirname(__file__))
 
 
 app = Flask(__name__)
@@ -23,9 +18,8 @@ CORS(app, origins="http://localhost:3000")
 # Configure SQLAlchemy
 
 
-app.config["SQLALCHEMY_DATABASE_URI"] = (
-    f"postgresql://postgres:{pw}@localhost/{DB_name}"
-)
+app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{os.path.join(basedir, 'app.db')}"
+
 
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = (
     False  # Disable modification tracking to suppress a warning
@@ -37,6 +31,13 @@ with app.app_context():
 
 
 RQ_data = []
+
+
+@app.route("/all_users", methods=["GET"])
+def all_users():
+    users = Users.query.all()
+    usernames = [user.username for user in users]
+    return jsonify({"usernames": usernames})
 
 
 @app.route("/requests/<username>", methods=["GET"])
@@ -57,25 +58,18 @@ def get_user_requests(username):
 
 @app.route("/signin", methods=["POST"])
 def signin():
-    # Get data from request
-    print(request.json)
-    print(type(request.json))
-    data = request.json
+    data = request.get_json()
     username = data.get("username")
-    email = data.get("email")
 
-    # Find user in the database
+    if not username:
+        return jsonify({"error": "Username is required"}), 400
+
     user = Users.query.filter_by(username=username).first()
 
-    # Check if the user exists and the email matches
-    if user and user.email == email:
+    if user:
         return jsonify({"message": "Sign in successful"}), 200
-    # if the user exists but the email does not match
-    elif user and user.email != email:
-        return jsonify({"error": "Invalid username or email"}), 401
-    # if the user does not exist
     else:
-        signup(username, email)
+        return jsonify({"error": "User not found"}), 404
 
 
 from flask import jsonify
@@ -139,14 +133,22 @@ def write_to_db():
         return jsonify({"error": str(e)}), 500
 
 
-def signup(username, email):
+@app.route("/signup", methods=["POST"])
+def signup():
+    data = request.get_json()
+    username = data.get("username")
 
-    # Create a new user
-    new_user = Users(username=username, email=email)
+    if not username:
+        return jsonify({"error": "Username is required"}), 400
+
+    if Users.query.filter_by(username=username).first():
+        return jsonify({"error": "User already exists"}), 400
+
+    new_user = Users(username=username)
     db.session.add(new_user)
     db.session.commit()
 
-    return jsonify({"message": "User signed up successfully"}), 200
+    return jsonify({"message": f"User '{username}' created successfully"}), 200
 
 
 submitted_text = ""
@@ -171,6 +173,7 @@ def lang_data():
     global DEP
 
     data = request.get_json()
+    model = data.get("model", "mistral")
     input_text = data.get("text", "")
     input_lang = data.get("inputLanguage", "")
     input_lang_non_iso = iso_dict[input_lang]
@@ -254,7 +257,7 @@ def lang_data():
         return jsonify({"synonyms": synonyms})
 
     elif action == "Rephrase":
-        rephrased_text = rephrase(input_text)
+        rephrased_text = rephrase(input_text, model=model)
         return jsonify({"Rephrase": rephrased_text})
 
     analysed_text = temp
